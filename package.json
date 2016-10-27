@@ -1,0 +1,44 @@
+{
+  "name": "portier",
+  "version": "0.1.0",
+  "description": "Portier client for Node.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngryBytes/portier-node.git"
+  },
+  "keywords": [
+    "portier",
+    "auth"
+  ],
+  "author": "Stéphan Kochen <stephan@kochen.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AngryBytes/portier-node/issues"
+  },
+  "homepage": "https://github.com/AngryBytes/portier-node#readme",
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "strict": 2,
+      "no-var": 2,
+      "prefer-arrow-callback": 2,
+      "prefer-const": 2,
+      "prefer-numeric-literals": 2,
+      "prefer-rest-params": 2,
+      "prefer-spread": 2
+    }
+  },
+  "dependencies": {
+    "jwa": "^1.1.3",
+    "jwk-to-pem": "^1.2.5",
+    "request": "^2.76.0"
+  }
+}
