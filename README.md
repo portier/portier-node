@@ -12,7 +12,6 @@ const formParser = require('body-parser').urlencoded({ extended: false });
 const PortierClient = require('portier');
 
 const portier = new PortierClient({
-    clientId: 'Demo',
     redirectUri: 'http://localhost:8000/verify'
 });
 

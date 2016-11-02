@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AngryBytes/portier-node.git"
+    "url": "git+https://github.com/portier/portier-node.git"
   },
   "keywords": [
     "portier",
@@ -14,9 +14,9 @@
   "author": "Stéphan Kochen <stephan@kochen.nl>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AngryBytes/portier-node/issues"
+    "url": "https://github.com/portier/portier-node/issues"
   },
-  "homepage": "https://github.com/AngryBytes/portier-node#readme",
+  "homepage": "https://github.com/portier/portier-node#readme",
   "eslintConfig": {
     "extends": "eslint:recommended",
     "parserOptions": {
