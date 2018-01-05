@@ -17,27 +17,8 @@
     "url": "https://github.com/portier/portier-node/issues"
   },
   "homepage": "https://github.com/portier/portier-node#readme",
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "sourceType": "module"
-    },
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "rules": {
-      "strict": 2,
-      "no-var": 2,
-      "prefer-arrow-callback": 2,
-      "prefer-const": 2,
-      "prefer-numeric-literals": 2,
-      "prefer-rest-params": 2,
-      "prefer-spread": 2
-    }
-  },
   "scripts": {
-    "test": "tape test.js"
+    "test": "standard && tape test.js"
   },
   "dependencies": {
     "jwa": "^1.1.3",
@@ -45,6 +26,7 @@
     "request": "^2.76.0"
   },
   "devDependencies": {
+    "standard": "^10.0.3",
     "tape": "^4.8.0"
   }
 }
