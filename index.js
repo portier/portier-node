@@ -1,10 +1,10 @@
-const url = require('url');
-const net = require('net');
+const url = require('url')
+const net = require('net')
 
-exports = module.exports = require('./lib/client');
-exports.AbstractStore = require('./lib/store');
-exports.MemoryStore = require('./lib/stores/memory');
-exports.RedisStore = require('./lib/stores/redis');
+exports = module.exports = require('./lib/client')
+exports.AbstractStore = require('./lib/store')
+exports.MemoryStore = require('./lib/stores/memory')
+exports.RedisStore = require('./lib/stores/redis')
 
 /**
  * Normalize an email address.
@@ -18,12 +18,12 @@ exports.RedisStore = require('./lib/stores/redis');
  * @return {string} An empty string on invalid input
  */
 exports.normalize = (email) => {
-    const localEnd = email.indexOf('@');
-    if (localEnd === -1) return '';
+  const localEnd = email.indexOf('@')
+  if (localEnd === -1) return ''
 
-    const local = email.slice(0, localEnd).toLowerCase();
-    const host = url.domainToASCII(email.slice(localEnd + 1));
-    if (host === '' || host[0] === '[' || net.isIPv4(host)) return '';
+  const local = email.slice(0, localEnd).toLowerCase()
+  const host = url.domainToASCII(email.slice(localEnd + 1))
+  if (host === '' || host[0] === '[' || net.isIPv4(host)) return ''
 
-    return `${local}@${host}`;
-};
+  return `${local}@${host}`
+}
