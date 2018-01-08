@@ -22,6 +22,8 @@ exports.normalize = (email) => {
   if (localEnd === -1) return ''
 
   const local = email.slice(0, localEnd).toLowerCase()
+  if (local === '') return ''
+
   const host = url.domainToASCII(email.slice(localEnd + 1))
   if (host === '' || host[0] === '[' || net.isIPv4(host)) return ''
 
