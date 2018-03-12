@@ -26,7 +26,7 @@
     "request": "^2.76.0"
   },
   "devDependencies": {
-    "standard": "^10.0.3",
+    "standard": "^11.0.0",
     "tape": "^4.8.0"
   }
 }
