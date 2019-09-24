@@ -1,6 +1,6 @@
 {
   "name": "portier",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Portier client for Node.js",
   "main": "dist/index.js",
   "repository": {
