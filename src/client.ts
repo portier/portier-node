@@ -81,7 +81,7 @@ export default class PortierClient {
   /**
    * Start authentication of an email address.
    *
-   * Returns an URL to redirect the user agent to.
+   * Returns a URL to redirect the user agent to.
    */
   async authenticate(email: string): Promise<string> {
     const nonce = await this.store.createNonce(email);
