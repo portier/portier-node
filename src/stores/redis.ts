@@ -22,7 +22,7 @@ export default class RedisStore extends AbstractStore {
     const key = `cache:${cacheId}`;
 
     // Check if the item exists.
-    const item: string = await new Promise((resolve, reject) => {
+    const item: string | null = await new Promise((resolve, reject) => {
       this.client.get(key, (err, data) => {
         err ? reject(err) : resolve(data);
       });

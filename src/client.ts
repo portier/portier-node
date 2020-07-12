@@ -17,11 +17,11 @@ const getOrigin = (input: string): string => {
 
   if (protocol === "http:") {
     if (port === "80") {
-      port = undefined;
+      port = null;
     }
   } else if (protocol === "https:") {
     if (port === "443") {
-      port = undefined;
+      port = null;
     }
   } else {
     throw Error(`Unsupported URL scheme: ${protocol || ""}`);
