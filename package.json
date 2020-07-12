@@ -3,6 +3,7 @@
   "version": "0.4.1",
   "description": "Portier client for Node.js",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/portier/portier-node.git"
