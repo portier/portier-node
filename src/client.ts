@@ -93,7 +93,7 @@ export default class PortierClient {
       response_type: "id_token",
       response_mode: this.responseMode,
       client_id: this._clientId,
-      redirect_uri: this._redirectUri
+      redirect_uri: this._redirectUri,
     });
     return `${this.broker}/auth?${params}`;
   }
