@@ -46,3 +46,7 @@ rl.on("line", (line) => {
       process.exit(1);
   }
 });
+
+process.stdin.on("end", () => {
+  client.destroy();
+});
