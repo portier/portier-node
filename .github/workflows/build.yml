@@ -34,3 +34,22 @@ jobs:
 
     - name: Test
       run: npm run-script test
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.16
+
+    - name: Go cache
+      uses: actions/cache@v2
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+    - name: Build tester
+      run: go get -v github.com/portier/client-tester
+
+    - name: Run test suite
+      run: ~/go/bin/client-tester -bin ./client-tester.js
