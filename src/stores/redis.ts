@@ -35,9 +35,9 @@ export default class RedisStore extends AbstractStore {
     const { ttl, data } = await this.fetch(url);
 
     // Cache the result.
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       const json = JSON.stringify(data);
-      this.client.psetex(key, ttl, json, err => {
+      this.client.psetex(key, ttl, json, (err) => {
         err ? reject(err) : resolve();
       });
     });
@@ -54,8 +54,8 @@ export default class RedisStore extends AbstractStore {
     const key = `nonce:${nonce}`;
 
     // Store the nonce.
-    await new Promise((resolve, reject) => {
-      this.client.psetex(key, this.nonceTtl, email, err => {
+    await new Promise<void>((resolve, reject) => {
+      this.client.psetex(key, this.nonceTtl, email, (err) => {
         err ? reject(err) : resolve();
       });
     });

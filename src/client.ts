@@ -84,6 +84,7 @@ export default class PortierClient {
    * Returns a URL to redirect the user agent to.
    */
   async authenticate(email: string): Promise<string> {
+    const discovery = await this.fetchDiscovery();
     const nonce = await this.store.createNonce(email);
 
     const params = querystring.stringify({
@@ -93,9 +94,9 @@ export default class PortierClient {
       response_type: "id_token",
       response_mode: this.responseMode,
       client_id: this._clientId,
-      redirect_uri: this._redirectUri
+      redirect_uri: this._redirectUri,
     });
-    return `${this.broker}/auth?${params}`;
+    return `${discovery.authorization_endpoint}?${params}`;
   }
 
   /**
@@ -104,8 +105,7 @@ export default class PortierClient {
    * Returns the email address, or throws if invalid.
    */
   async verify(token: string): Promise<string> {
-    const discoveryUrl = `${this.broker}/.well-known/openid-configuration`;
-    const discovery = await this.store.fetchCached("discovery", discoveryUrl);
+    const discovery = await this.fetchDiscovery();
     const keys = await this.store.fetchCached("keys", discovery.jwks_uri);
 
     const payload = verifyToken(
@@ -122,6 +122,11 @@ export default class PortierClient {
     );
 
     return payload.email;
+  }
+
+  private async fetchDiscovery(): Promise<any> {
+    const discoveryUrl = `${this.broker}/.well-known/openid-configuration`;
+    return this.store.fetchCached("discovery", discoveryUrl);
   }
 }
 
@@ -187,9 +192,6 @@ const verifyToken = (
   const now = Date.now();
   if (payload.iss !== iss) {
     throw Error('Invalid token "iss" claim');
-  }
-  if (typeof payload.sub !== "string") {
-    throw Error('Invalid token "sub" claim');
   }
   if (payload.aud !== aud) {
     throw Error('Invalid token "aud" claim');

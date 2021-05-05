@@ -12,7 +12,7 @@ const formParser = require("body-parser").urlencoded({ extended: false });
 const { PortierClient } = require("portier");
 
 const portier = new PortierClient({
-  redirectUri: "http://localhost:8000/verify"
+  redirectUri: "http://localhost:8000/verify",
 });
 
 const app = express();
@@ -28,13 +28,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/auth", formParser, (req, res) => {
-  portier.authenticate(req.body.email).then(authUrl => {
+  portier.authenticate(req.body.email).then((authUrl) => {
     res.redirect(303, authUrl);
   });
 });
 
 app.post("/verify", formParser, (req, res) => {
-  portier.verify(req.body.id_token).then(email => {
+  portier.verify(req.body.id_token).then((email) => {
     res.type("html").end(`
       <p>Verified email address ${email}!</p>
     `);
