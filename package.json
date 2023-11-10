@@ -27,14 +27,11 @@
   },
   "dependencies": {
     "jwa": "^2.0.0",
-    "jwk-to-pem": "^2.0.1",
-    "node-fetch": "^2.6.0"
+    "jwk-to-pem": "^2.0.1"
   },
   "devDependencies": {
     "@redis/client": "^1.5.11",
-    "@types/node": "16",
-    "@types/node-fetch": "^2.5.0",
-    "@types/redis": "^2.8.13",
+    "@types/node": "18",
     "prettier": "3.0.3",
     "tape": "^5.2.2",
     "typescript": "5.2.2"

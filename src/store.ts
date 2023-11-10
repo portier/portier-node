@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import fetch from "node-fetch";
 
 /** Abstract base class for store implementations. */
 export default abstract class AbstractStore {
@@ -29,7 +28,10 @@ export default abstract class AbstractStore {
 
   /** Fetch a URL using HTTP GET. */
   async fetch(url: string): Promise<{ ttl: number; data: any }> {
-    const res = await fetch(url, { timeout: this.requestTimeout });
+    const abortCtrl = new AbortController();
+    setTimeout(() => abortCtrl.abort("Request timed out"), this.requestTimeout);
+
+    const res = await fetch(url, { signal: abortCtrl.signal });
     if (res.status !== 200) {
       throw Error(`Unexpected status code ${res.status}`);
     }
