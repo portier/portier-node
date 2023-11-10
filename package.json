@@ -31,11 +31,11 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@types/node": "^12.7.5",
+    "@redis/client": "^1.5.11",
+    "@types/node": "16",
     "@types/node-fetch": "^2.5.0",
     "@types/redis": "^2.8.13",
     "prettier": "3.0.3",
-    "redis": "^3.1.1",
     "tape": "^5.2.2",
     "typescript": "5.2.2"
   }

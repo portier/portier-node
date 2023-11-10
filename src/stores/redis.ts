@@ -1,16 +1,16 @@
 import AbstractStore from "../store";
-import { RedisClient } from "redis";
+import type { RedisClientType } from "@redis/client";
 
 /**
  * Store implementation using Redis.
  *
- * The store takes a `RedisClient`, but does NOT take ownership of that
+ * The store takes a `RedisClientType`, but does NOT take ownership of that
  * client. If you need to clean up, you must close the client yourself.
  */
 export default class RedisStore extends AbstractStore {
-  readonly client: RedisClient;
+  readonly client: RedisClientType;
 
-  constructor(client: RedisClient) {
+  constructor(client: RedisClientType) {
     super();
 
     this.client = client;
@@ -22,11 +22,7 @@ export default class RedisStore extends AbstractStore {
     const key = `cache:${cacheId}`;
 
     // Check if the item exists.
-    const item: string | null = await new Promise((resolve, reject) => {
-      this.client.get(key, (err, data) => {
-        err ? reject(err) : resolve(data);
-      });
-    });
+    const item: string | null = await this.client.get(key);
     if (item) {
       return JSON.parse(item);
     }
@@ -35,12 +31,7 @@ export default class RedisStore extends AbstractStore {
     const { ttl, data } = await this.fetch(url);
 
     // Cache the result.
-    await new Promise<void>((resolve, reject) => {
-      const json = JSON.stringify(data);
-      this.client.psetex(key, ttl, json, (err) => {
-        err ? reject(err) : resolve();
-      });
-    });
+    await this.client.pSetEx(key, ttl, JSON.stringify(data));
 
     // Return the result.
     return data;
@@ -54,11 +45,7 @@ export default class RedisStore extends AbstractStore {
     const key = `nonce:${nonce}`;
 
     // Store the nonce.
-    await new Promise<void>((resolve, reject) => {
-      this.client.psetex(key, this.nonceTtl, email, (err) => {
-        err ? reject(err) : resolve();
-      });
-    });
+    await this.client.pSetEx(key, this.nonceTtl, email);
 
     // Return the nonce.
     return nonce;
@@ -70,15 +57,7 @@ export default class RedisStore extends AbstractStore {
     const key = `nonce:${nonce}`;
 
     // Take the item from the store.
-    const item = await new Promise((resolve, reject) => {
-      this.client
-        .multi()
-        .get(key)
-        .del(key)
-        .exec((err, replies) => {
-          err ? reject(err) : resolve(replies[0]);
-        });
-    });
+    const [item] = await this.client.multi().get(key).del(key).exec();
 
     if (item !== email) {
       throw Error("Invalid or expired nonce");
