@@ -2,6 +2,7 @@
   "name": "portier",
   "version": "0.4.3",
   "description": "Portier client for Node.js",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -18,6 +19,11 @@
     "url": "https://github.com/portier/portier-node/issues"
   },
   "homepage": "https://github.com/portier/portier-node#readme",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -27,16 +33,13 @@
   },
   "dependencies": {
     "jwa": "^2.0.0",
-    "jwk-to-pem": "^2.0.1",
-    "node-fetch": "^2.6.0"
+    "jwk-to-pem": "^2.0.1"
   },
   "devDependencies": {
-    "@types/node": "^12.7.5",
-    "@types/node-fetch": "^2.5.0",
-    "@types/redis": "^2.8.13",
-    "prettier": "2.2.1",
-    "redis": "^3.1.1",
+    "@redis/client": "^1.5.11",
+    "@types/node": "18",
+    "prettier": "3.0.3",
     "tape": "^5.2.2",
-    "typescript": "^4.2.3"
+    "typescript": "5.2.2"
   }
 }

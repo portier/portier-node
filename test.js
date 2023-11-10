@@ -1,5 +1,5 @@
-const test = require("tape");
-const { normalize } = require(".");
+import test from "tape";
+import { normalize } from "./dist/index.js";
 
 test("normalize", (t) => {
   const valid = [

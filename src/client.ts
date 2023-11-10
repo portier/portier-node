@@ -1,9 +1,9 @@
-import url from "url";
+import url from "node:url";
 import jwa from "jwa";
 import jwkToPem from "jwk-to-pem";
-import querystring from "querystring";
-import AbstractStore from "./store";
-import MemoryStore from "./stores/memory";
+import querystring from "node:querystring";
+import AbstractStore from "./store.js";
+import MemoryStore from "./stores/memory.js";
 
 const rs256 = jwa("RS256");
 
@@ -113,12 +113,12 @@ export default class PortierClient {
       keys,
       this.broker,
       this._clientId,
-      this.leeway
+      this.leeway,
     );
 
     await this.store.consumeNonce(
       payload.nonce,
-      payload.email_original || payload.email
+      payload.email_original || payload.email,
     );
 
     return payload.email;
@@ -135,7 +135,7 @@ const verifyToken = (
   keysDoc: any,
   iss: string,
   aud: string,
-  leeway: number
+  leeway: number,
 ): any => {
   // Split the token.
   const parts = token.split(".");
@@ -151,7 +151,7 @@ const verifyToken = (
     if (!header || typeof header !== "object") {
       throw Error("not an object");
     }
-  } catch (err) {
+  } catch (err: any) {
     throw Error(`Invalid token header: ${err.message || err}`);
   }
 
@@ -184,7 +184,7 @@ const verifyToken = (
     if (!payload || typeof payload !== "object") {
       throw Error("not an object");
     }
-  } catch (err) {
+  } catch (err: any) {
     throw Error(`Invalid token payload: ${err.message || err}`);
   }
 

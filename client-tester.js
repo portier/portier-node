@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const { PortierClient } = require(".");
+import PortierClient from "./dist/index.js";
+import { createInterface } from "node:readline";
 
 if (process.argv.length !== 3) {
   console.error("Broker required");
@@ -12,7 +13,7 @@ const client = new PortierClient({
   redirectUri: "http://imaginary-client.test/fake-verify-route",
 });
 
-const rl = require("readline").createInterface({
+const rl = createInterface({
   input: process.stdin,
   output: process.stdout,
   terminal: false,
@@ -25,7 +26,7 @@ const wrap = (fn) => {
     },
     (err) => {
       console.log(`err\t${err.message}`);
-    }
+    },
   );
 };
 

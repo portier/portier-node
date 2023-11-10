@@ -1,5 +1,5 @@
-import { isIPv4 } from "net";
-import { domainToASCII } from "url";
+import { isIPv4 } from "node:net";
+import { domainToASCII } from "node:url";
 
 /**
  * Normalize an email address.
