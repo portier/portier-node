@@ -1,4 +1,4 @@
-import AbstractStore from "../store";
+import AbstractStore from "../store.js";
 
 /** An in-memory store implementation. */
 export default class MemoryStore extends AbstractStore {

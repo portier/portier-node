@@ -2,6 +2,7 @@
   "name": "portier",
   "version": "0.4.3",
   "description": "Portier client for Node.js",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {

@@ -1,4 +1,4 @@
-import AbstractStore from "../store";
+import AbstractStore from "../store.js";
 import type { RedisClientType } from "@redis/client";
 
 /**

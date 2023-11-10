@@ -1,4 +1,5 @@
-export { default as PortierClient } from "./client";
-export { default as AbstractStore } from "./store";
-export { default as MemoryStore } from "./stores/memory";
-export { default as normalize } from "./normalize";
+import PortierClient from "./client.js";
+export default PortierClient;
+export { default as AbstractStore } from "./store.js";
+export { default as MemoryStore } from "./stores/memory.js";
+export { default as normalize } from "./normalize.js";

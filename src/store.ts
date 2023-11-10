@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 /** Abstract base class for store implementations. */
 export default abstract class AbstractStore {

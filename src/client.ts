@@ -1,9 +1,9 @@
-import url from "url";
+import url from "node:url";
 import jwa from "jwa";
 import jwkToPem from "jwk-to-pem";
-import querystring from "querystring";
-import AbstractStore from "./store";
-import MemoryStore from "./stores/memory";
+import querystring from "node:querystring";
+import AbstractStore from "./store.js";
+import MemoryStore from "./stores/memory.js";
 
 const rs256 = jwa("RS256");
 
