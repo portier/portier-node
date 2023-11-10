@@ -19,6 +19,11 @@
     "url": "https://github.com/portier/portier-node/issues"
   },
   "homepage": "https://github.com/portier/portier-node#readme",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
