@@ -25,7 +25,7 @@ const wrap = (fn) => {
     },
     (err) => {
       console.log(`err\t${err.message}`);
-    }
+    },
   );
 };
 

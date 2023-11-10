@@ -113,12 +113,12 @@ export default class PortierClient {
       keys,
       this.broker,
       this._clientId,
-      this.leeway
+      this.leeway,
     );
 
     await this.store.consumeNonce(
       payload.nonce,
-      payload.email_original || payload.email
+      payload.email_original || payload.email,
     );
 
     return payload.email;
@@ -135,7 +135,7 @@ const verifyToken = (
   keysDoc: any,
   iss: string,
   aud: string,
-  leeway: number
+  leeway: number,
 ): any => {
   // Split the token.
   const parts = token.split(".");

@@ -11,7 +11,7 @@ export default class MemoryStore extends AbstractStore {
     this.data = Object.create(null);
     this.interval = setInterval(
       () => this.gc(),
-      60 * 1000 // 1 minute
+      60 * 1000, // 1 minute
     );
   }
 
