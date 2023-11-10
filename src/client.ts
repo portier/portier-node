@@ -151,7 +151,7 @@ const verifyToken = (
     if (!header || typeof header !== "object") {
       throw Error("not an object");
     }
-  } catch (err) {
+  } catch (err: any) {
     throw Error(`Invalid token header: ${err.message || err}`);
   }
 
@@ -184,7 +184,7 @@ const verifyToken = (
     if (!payload || typeof payload !== "object") {
       throw Error("not an object");
     }
-  } catch (err) {
+  } catch (err: any) {
     throw Error(`Invalid token payload: ${err.message || err}`);
   }
 
