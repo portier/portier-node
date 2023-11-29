@@ -22,10 +22,10 @@ const rl = createInterface({
 const wrap = (fn) => {
   fn().then(
     (res) => {
-      console.log(`ok\t${res}`);
+      console.log(["ok", ...res].join("\t"));
     },
     (err) => {
-      console.log(`err\t${err.message}`);
+      console.log(["err", err.message].join("\t"));
     },
   );
 };
@@ -34,13 +34,19 @@ rl.on("line", (line) => {
   const cmd = line.split("\t");
   switch (cmd[0]) {
     case "echo":
-      wrap(async () => cmd[1]);
+      wrap(async () => [cmd[1]]);
       break;
     case "auth":
-      wrap(async () => client.authenticate(cmd[1]));
+      wrap(async () => {
+        const url = await client.authenticate(cmd[1], cmd[2]);
+        return [url];
+      });
       break;
     case "verify":
-      wrap(async () => client.verify(cmd[1]));
+      wrap(async () => {
+        const { email, state = "" } = await client.verify(cmd[1]);
+        return [email, state];
+      });
       break;
     default:
       console.error(`invalid command: ${cmd[0]}`);
