@@ -82,8 +82,10 @@ export default class PortierClient {
    * Start authentication of an email address.
    *
    * Returns a URL to redirect the user agent to.
+   *
+   * This method rethrows any failures from the store.
    */
-  async authenticate(email: string): Promise<string> {
+  async authenticate(email: string, state?: string): Promise<string> {
     const discovery = await this.fetchDiscovery();
     const nonce = await this.store.createNonce(email);
 
@@ -95,6 +97,7 @@ export default class PortierClient {
       response_mode: this.responseMode,
       client_id: this._clientId,
       redirect_uri: this._redirectUri,
+      state,
     });
     return `${discovery.authorization_endpoint}?${params}`;
   }
@@ -102,7 +105,10 @@ export default class PortierClient {
   /**
    * Verify a token received on our `redirectUri`.
    *
-   * Returns the email address, or throws if invalid.
+   * On success, returns the verified email address.
+   *
+   * If the token is invalid, this method throws. This method also rethrows any
+   * failures from the store.
    */
   async verify(token: string): Promise<string> {
     const discovery = await this.fetchDiscovery();

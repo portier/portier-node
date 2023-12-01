@@ -37,7 +37,7 @@ rl.on("line", (line) => {
       wrap(async () => cmd[1]);
       break;
     case "auth":
-      wrap(async () => client.authenticate(cmd[1]));
+      wrap(async () => client.authenticate(cmd[1], cmd[2]));
       break;
     case "verify":
       wrap(async () => client.verify(cmd[1]));
