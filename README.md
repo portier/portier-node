@@ -42,7 +42,7 @@ app.post("/verify", async (req, res) => {
     `;
   }
 
-  const { email } = await portier.verify(req.body.id_token);
+  const email = await portier.verify(req.body.id_token);
 
   res.type("text/html");
   return `
